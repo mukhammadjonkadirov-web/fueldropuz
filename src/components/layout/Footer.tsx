@@ -108,7 +108,7 @@ export function Footer() {
           </div>
         </div>
         <div className="mt-10 border-t border-slate-800 pt-8 text-center text-sm text-slate-500">
-          © {new Date().getFullYear()} FuelDrop. All rights reserved.
+          © {new Date().getFullYear()} FuelDrop. {t("footer.rights")}
         </div>
       </div>
     </footer>

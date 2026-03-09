@@ -38,35 +38,21 @@ export default function ForCompaniesPage() {
             {t("companies.howBody")}
           </p>
           <div className="mt-12 grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
-            {[
-              {
-                title: "Monthly employee fuel budgets",
-                description: "Set a fuel allowance per employee each month. Funds stay in your account until fuel is actually delivered.",
-              },
-              {
-                title: "Controlled usage",
-                description: "Employees order fuel through FuelDrop within their limit. No cash in hand means no spending on other things.",
-              },
-              {
-                title: "Direct service, not reimbursement",
-                description: "We deliver fuel to the employee’s car. No expense claims, no receipts, no chasing — just fuel when they need it.",
-              },
-              {
-                title: "Usage transparency",
-                description: "See who ordered what, when, and where. Full visibility for finance and fleet managers.",
-              },
-              {
-                title: "Reduced misuse",
-                description: "Fuel money can’t be used for groceries or other purchases. Budget goes only to fuel delivery.",
-              },
-              {
-                title: "Monthly reporting",
-                description: "Clear reports on spend, usage per employee, and remaining budget. Export for accounting and audits.",
-              },
-            ].map((item) => (
-              <Card key={item.title} className="h-full">
-                <CardTitle>{item.title}</CardTitle>
-                <p className="mt-2 text-slate-600">{item.description}</p>
+            {(
+              [
+                "monthlyBudgets",
+                "controlledUsage",
+                "directService",
+                "usageTransparency",
+                "reducedMisuse",
+                "monthlyReporting",
+              ] as const
+            ).map((key) => (
+              <Card key={key} className="h-full">
+                <CardTitle>{t(`companies.features.${key}.title`)}</CardTitle>
+                <p className="mt-2 text-slate-600">
+                  {t(`companies.features.${key}.description`)}
+                </p>
               </Card>
             ))}
           </div>
@@ -82,22 +68,14 @@ export default function ForCompaniesPage() {
             {t("companies.controlBody")}
           </p>
           <ul className="mx-auto mt-10 max-w-2xl space-y-4 text-slate-700">
-            <li className="flex gap-3">
-              <span className="text-sky-600 font-bold">✓</span>
-              Set per-employee or per-department monthly limits
-            </li>
-            <li className="flex gap-3">
-              <span className="text-sky-600 font-bold">✓</span>
-              Get alerts when an employee is close to their limit
-            </li>
-            <li className="flex gap-3">
-              <span className="text-sky-600 font-bold">✓</span>
-              One invoice from FuelDrop instead of dozens of expense claims
-            </li>
-            <li className="flex gap-3">
-              <span className="text-sky-600 font-bold">✓</span>
-              Optional integration with your payroll or fleet systems
-            </li>
+            {(
+              ["limits", "alerts", "singleInvoice", "integrations"] as const
+            ).map((key) => (
+              <li key={key} className="flex gap-3">
+                <span className="text-sky-600 font-bold">✓</span>
+                {t(`companies.controlPoints.${key}`)}
+              </li>
+            ))}
           </ul>
         </div>
       </section>

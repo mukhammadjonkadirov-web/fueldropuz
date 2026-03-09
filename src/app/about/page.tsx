@@ -25,37 +25,16 @@ export default function AboutPage() {
             {t("about.expectTitle")}
           </h2>
           <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-            {[
-              {
-                title: "Professional service",
-                description: "Every delivery is carried out by our trained team. We follow strict safety and quality procedures so you get fuel you can trust.",
-              },
-              {
-                title: "Safe fuel delivery",
-                description: "We use approved equipment and follow local regulations. Your vehicle and the environment are protected at every step.",
-              },
-              {
-                title: "Trained staff",
-                description: "Our technicians are background-checked and certified for safe fuel handling. You’ll see a clear ID and branded vehicle.",
-              },
-              {
-                title: "Transparent pricing",
-                description: "You see the price before we start. We charge for the fuel delivered — no hidden fees or surprise charges.",
-              },
-              {
-                title: "Reliable support",
-                description: "Questions or issues? Our support team is available to help. We’ll keep you updated on your delivery status.",
-              },
-              {
-                title: "Clear and simple",
-                description: "Ordering is designed to be easy for everyone. No complicated forms or confusing options — just fuel when you need it.",
-              },
-            ].map((item) => (
-              <Card key={item.title} className="h-full">
-                <CardTitle>{item.title}</CardTitle>
-                <p className="mt-2 text-slate-600">{item.description}</p>
-              </Card>
-            ))}
+            {(["professional", "safeDelivery", "trainedStaff", "transparentPricing", "reliableSupport", "clearSimple"] as const).map(
+              (key) => (
+                <Card key={key} className="h-full">
+                  <CardTitle>{t(`about.features.${key}.title`)}</CardTitle>
+                  <p className="mt-2 text-slate-600">
+                    {t(`about.features.${key}.description`)}
+                  </p>
+                </Card>
+              )
+            )}
           </div>
         </div>
       </section>

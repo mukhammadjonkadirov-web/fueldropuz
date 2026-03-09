@@ -136,6 +136,7 @@ const translationsEn = {
     terms: "Terms of service",
     contactUs: "Contact",
     available24_7: "Available 24/7 across Uzbekistan",
+    rights: "All rights reserved.",
   },
   companies: {
     heroTitle: "Smarter fuel budgets for your company",
@@ -179,12 +180,48 @@ const translationsEn = {
     colOrderStatus: "Status",
     demoNote:
       "This is a demo dashboard. Real company accounts get full reporting and settings.",
+    alertLine1: "James Wilson is close to his monthly limit (£2 remaining).",
+    alertLine2:
+      "David Brown has reached his monthly limit. No further orders until next month.",
+    orderStatusDelivered: "Delivered",
   },
   about: {
     title: "About FuelDrop",
     heroBody:
       "We deliver fuel directly to your car — at home, at work, or when you’re stuck. Professional service, transparent pricing, and peace of mind.",
     expectTitle: "What you can expect",
+    features: {
+      professional: {
+        title: "Professional service",
+        description:
+          "Every delivery is carried out by our trained team. We follow strict safety and quality procedures so you get fuel you can trust.",
+      },
+      safeDelivery: {
+        title: "Safe fuel delivery",
+        description:
+          "We use approved equipment and follow local regulations. Your vehicle and the environment are protected at every step.",
+      },
+      trainedStaff: {
+        title: "Trained staff",
+        description:
+          "Our technicians are background-checked and certified for safe fuel handling. You’ll see a clear ID and branded vehicle.",
+      },
+      transparentPricing: {
+        title: "Transparent pricing",
+        description:
+          "You see the price before we start. We charge for the fuel delivered — no hidden fees or surprise charges.",
+      },
+      reliableSupport: {
+        title: "Reliable support",
+        description:
+          "Questions or issues? Our support team is available to help. We’ll keep you updated on your delivery status.",
+      },
+      clearSimple: {
+        title: "Clear and simple",
+        description:
+          "Ordering is designed to be easy for everyone. No complicated forms or confusing options — just fuel when you need it.",
+      },
+    },
     commitmentTitle: "Our commitment",
     commitmentBody:
       "We built FuelDrop to make refuelling simpler and more honest — for drivers who need fuel in a pinch, and for companies who want control over fuel spend. We’re here to deliver fuel safely, on time, and without the hassle.",
@@ -312,6 +349,7 @@ const translationsRu: Translations = {
     terms: "Условия использования",
     contactUs: "Связаться",
     available24_7: "Работаем 24/7 по всему Узбекистану",
+    rights: "Все права защищены.",
   },
   companies: {
     ...translationsEn.companies,
@@ -358,6 +396,11 @@ const translationsRu: Translations = {
     colOrderStatus: "Статус",
     demoNote:
       "Это демо‑панель. В реальных аккаунтах доступны полная отчётность и настройки.",
+    alertLine1:
+      "Джеймс Уилсон почти израсходовал свой месячный лимит (осталось £2).",
+    alertLine2:
+      "Дэвид Браун исчерпал месячный лимит. Новые заказы будут доступны в следующем месяце.",
+    orderStatusDelivered: "Доставлено",
   },
   about: {
     ...translationsEn.about,
@@ -365,6 +408,38 @@ const translationsRu: Translations = {
     heroBody:
       "Мы доставляем топливо прямо к вашему автомобилю — дома, в офисе или когда вы застряли в дороге. Профессиональный сервис, прозрачные цены и спокойствие.",
     expectTitle: "Что вы получаете",
+    features: {
+      professional: {
+        title: "Профессиональный сервис",
+        description:
+          "Каждую доставку выполняет обученная команда. Мы соблюдаем строгие стандарты безопасности и качества, чтобы вы получали надёжное топливо.",
+      },
+      safeDelivery: {
+        title: "Безопасная доставка топлива",
+        description:
+          "Мы используем сертифицированное оборудование и соблюдаем местные нормы. Ваш автомобиль и окружающая среда защищены на каждом этапе.",
+      },
+      trainedStaff: {
+        title: "Обученный персонал",
+        description:
+          "Наши специалисты проходят проверку и обучение по безопасной работе с топливом. Вы всегда видите официальный бейдж и брендированный автомобиль.",
+      },
+      transparentPricing: {
+        title: "Прозрачные цены",
+        description:
+          "Вы видите стоимость до начала работы. Мы берём оплату только за доставленное топливо — без скрытых комиссий и сюрпризов.",
+      },
+      reliableSupport: {
+        title: "Надёжная поддержка",
+        description:
+          "Есть вопросы или сложности? Наша служба поддержки на связи и информирует вас о статусе доставки.",
+      },
+      clearSimple: {
+        title: "Понятно и просто",
+        description:
+          "Процесс заказа сделан простым для всех. Никаких сложных форм и непонятных шагов — только топливо тогда, когда оно нужно.",
+      },
+    },
     commitmentTitle: "Наше обещание",
     commitmentBody:
       "Мы создали FuelDrop, чтобы сделать заправку проще и честнее — для водителей и для компаний. Мы доставляем топливо безопасно, вовремя и без лишних хлопот.",

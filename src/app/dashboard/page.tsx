@@ -55,8 +55,8 @@ export default function DashboardPage() {
           {t("dashboard.alertsTitle")}
         </CardTitle>
         <ul className="mt-3 space-y-2 text-sm text-slate-600">
-          <li>James Wilson is close to his monthly limit (£2 remaining).</li>
-          <li>David Brown has reached his monthly limit. No further orders until next month.</li>
+          <li>{t("dashboard.alertLine1")}</li>
+          <li>{t("dashboard.alertLine2")}</li>
         </ul>
       </Card>
 
@@ -145,11 +145,46 @@ export default function DashboardPage() {
               </tr>
             </thead>
             <tbody>
-              <tr className="border-t border-slate-100"><td className="px-4 py-2 text-slate-600">8 Mar 2025</td><td className="px-4 py-2">Sarah Chen</td><td className="px-4 py-2">£42</td><td className="px-4 py-2 text-emerald-600">Delivered</td></tr>
-              <tr className="border-t border-slate-100"><td className="px-4 py-2 text-slate-600">7 Mar 2025</td><td className="px-4 py-2">James Wilson</td><td className="px-4 py-2">£58</td><td className="px-4 py-2 text-emerald-600">Delivered</td></tr>
-              <tr className="border-t border-slate-100"><td className="px-4 py-2 text-slate-600">6 Mar 2025</td><td className="px-4 py-2">Maria Garcia</td><td className="px-4 py-2">£45</td><td className="px-4 py-2 text-emerald-600">Delivered</td></tr>
-              <tr className="border-t border-slate-100"><td className="px-4 py-2 text-slate-600">5 Mar 2025</td><td className="px-4 py-2">David Brown</td><td className="px-4 py-2">£60</td><td className="px-4 py-2 text-emerald-600">Delivered</td></tr>
-              <tr className="border-t border-slate-100"><td className="px-4 py-2 text-slate-600">4 Mar 2025</td><td className="px-4 py-2">Sarah Chen</td><td className="px-4 py-2">£38</td><td className="px-4 py-2 text-emerald-600">Delivered</td></tr>
+              <tr className="border-t border-slate-100">
+                <td className="px-4 py-2 text-slate-600">2025‑03‑08</td>
+                <td className="px-4 py-2">Sarah Chen</td>
+                <td className="px-4 py-2">£42</td>
+                <td className="px-4 py-2 text-emerald-600">
+                  {t("dashboard.orderStatusDelivered")}
+                </td>
+              </tr>
+              <tr className="border-t border-slate-100">
+                <td className="px-4 py-2 text-slate-600">2025‑03‑07</td>
+                <td className="px-4 py-2">James Wilson</td>
+                <td className="px-4 py-2">£58</td>
+                <td className="px-4 py-2 text-emerald-600">
+                  {t("dashboard.orderStatusDelivered")}
+                </td>
+              </tr>
+              <tr className="border-t border-slate-100">
+                <td className="px-4 py-2 text-slate-600">2025‑03‑06</td>
+                <td className="px-4 py-2">Maria Garcia</td>
+                <td className="px-4 py-2">£45</td>
+                <td className="px-4 py-2 text-emerald-600">
+                  {t("dashboard.orderStatusDelivered")}
+                </td>
+              </tr>
+              <tr className="border-t border-slate-100">
+                <td className="px-4 py-2 text-slate-600">2025‑03‑05</td>
+                <td className="px-4 py-2">David Brown</td>
+                <td className="px-4 py-2">£60</td>
+                <td className="px-4 py-2 text-emerald-600">
+                  {t("dashboard.orderStatusDelivered")}
+                </td>
+              </tr>
+              <tr className="border-t border-slate-100">
+                <td className="px-4 py-2 text-slate-600">2025‑03‑04</td>
+                <td className="px-4 py-2">Sarah Chen</td>
+                <td className="px-4 py-2">£38</td>
+                <td className="px-4 py-2 text-emerald-600">
+                  {t("dashboard.orderStatusDelivered")}
+                </td>
+              </tr>
             </tbody>
           </table>
         </div>
