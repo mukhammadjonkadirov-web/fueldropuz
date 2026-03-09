@@ -1,11 +1,11 @@
  "use client";
-
-import { useEffect, useState } from "react";
+ 
+import { useState } from "react";
 import { Card, CardTitle } from "@/components/ui/Card";
-
+ 
 type OrderStatus = "new" | "accepted" | "on_the_way" | "delivered";
 type PaymentStatus = "pending" | "paid" | "failed";
-
+ 
 type Order = {
   id: string;
   orderId: string;
@@ -22,12 +22,31 @@ type Order = {
   createdAt: string | Date;
   updatedAt: string | Date;
 };
-
+ 
 const STATUS_OPTIONS: { value: OrderStatus; label: string; color: string }[] = [
   { value: "new", label: "new", color: "bg-slate-200 text-slate-800" },
   { value: "accepted", label: "accepted", color: "bg-sky-100 text-sky-800" },
   { value: "on_the_way", label: "on the way", color: "bg-amber-100 text-amber-800" },
   { value: "delivered", label: "delivered", color: "bg-emerald-100 text-emerald-800" },
+];
+
+const MOCK_ORDERS: Order[] = [
+  {
+    id: "1",
+    orderId: "FD-DEMO-001",
+    name: "Demo Customer",
+    phone: "+998 90 000 00 00",
+    city: "Tashkent",
+    address: "Amir Temur street, business district",
+    coordinates: null,
+    fuelType: "AI-95",
+    liters: "40",
+    paymentMethod: "cash",
+    paymentStatus: "pending",
+    status: "new",
+    createdAt: new Date().toISOString(),
+    updatedAt: new Date().toISOString(),
+  },
 ];
 
 function statusBadge(status: OrderStatus) {
@@ -59,55 +78,16 @@ function paymentStatusBadge(status: PaymentStatus) {
 }
 
 export default function OrdersDashboardPage() {
-  const [orders, setOrders] = useState<Order[]>([]);
-  const [loading, setLoading] = useState(true);
+  const [orders, setOrders] = useState<Order[]>(MOCK_ORDERS);
   const [updatingId, setUpdatingId] = useState<string | null>(null);
-  const [error, setError] = useState<string | null>(null);
-
-  useEffect(() => {
-    const load = async () => {
-      try {
-        setLoading(true);
-        const res = await fetch("/api/orders");
-        const data = await res.json();
-        if (!res.ok || !data.success) {
-          throw new Error(data.error || "Failed to load orders");
-        }
-        setOrders(data.orders);
-      } catch (e) {
-        console.error(e);
-        setError("Failed to load orders.");
-      } finally {
-        setLoading(false);
-      }
-    };
-    void load();
-  }, []);
-
-  const updateStatus = async (orderId: string, status: OrderStatus) => {
-    try {
-      setUpdatingId(orderId);
-      setError(null);
-      const res = await fetch(`/api/orders/${orderId}`, {
-        method: "PATCH",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ status }),
-      });
-      const data = await res.json();
-      if (!res.ok || !data.success) {
-        throw new Error(data.error || "Failed to update status");
-      }
-      setOrders((prev) =>
-        prev.map((o) => (o.orderId === orderId ? { ...o, status } : o))
-      );
-    } catch (e) {
-      console.error(e);
-      setError("Failed to update order status.");
-    } finally {
-      setUpdatingId(null);
-    }
+ 
+  const updateStatus = (orderId: string, status: OrderStatus) => {
+    setUpdatingId(orderId);
+    setOrders((prev) =>
+      prev.map((o) => (o.orderId === orderId ? { ...o, status } : o))
+    );
+    // Simulate quick completion for the loading state
+    setTimeout(() => setUpdatingId(null), 300);
   };
 
   return (
@@ -122,19 +102,11 @@ export default function OrdersDashboardPage() {
         </p>
       </div>
 
-      {error && (
-        <div className="mb-4 rounded-xl border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-700">
-          {error}
-        </div>
-      )}
-
       <Card padding="none">
         <div className="border-b border-slate-200 px-4 py-3 sm:px-6">
           <CardTitle>Orders</CardTitle>
         </div>
-        {loading ? (
-          <div className="p-6 text-sm text-slate-500">Loading orders…</div>
-        ) : orders.length === 0 ? (
+        {orders.length === 0 ? (
           <div className="p-6 text-sm text-slate-500">
             No orders yet. New orders will appear here in real time as customers
             submit them.

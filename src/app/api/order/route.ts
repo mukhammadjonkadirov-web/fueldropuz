@@ -1,9 +1,7 @@
 import { NextResponse } from "next/server";
-import { prisma } from "@/lib/prisma";
 
 type PaymentMethod = "cash" | "card" | "payment_link";
 type OrderStatus = "new" | "accepted" | "on_the_way" | "delivered";
-type PaymentStatus = "pending" | "paid" | "failed";
 
 type Coordinates = { lat: number; lng: number };
 
@@ -57,24 +55,9 @@ export async function POST(request: Request) {
 
     const orderId = "FD-" + Date.now().toString(36).toUpperCase();
 
+    // Demo / portfolio deployment: no database persistence.
+    // We still format all details and optionally send a Telegram notification.
     const status: OrderStatus = "new";
-    const paymentStatus: PaymentStatus = "pending";
-
-    await prisma.order.create({
-      data: {
-        orderId,
-        name: name || "",
-        phone: phone || "",
-        city: city || null,
-        address: addressDetails || address || null,
-        coordinates: coordinates ? JSON.stringify(coordinates) : null,
-        fuelType: fuelType || null,
-        liters: liters || null,
-        paymentMethod,
-        paymentStatus,
-        status,
-      },
-    });
 
     const addressBlock =
       city || addressDetails || address
