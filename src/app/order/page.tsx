@@ -527,7 +527,7 @@ type OrderFormState = {
 
 export default function OrderPage() {
   const [step, setStep] = useState(0);
-  const { lang, setLang } = useI18n();
+  const { lang } = useI18n();
   const t = COPY[lang];
 
   const [form, setForm] = useState<OrderFormState>({
@@ -566,12 +566,15 @@ export default function OrderPage() {
   );
   const cityCenter = cityOption?.center ?? CITIES[0].center;
 
+  // For option labels we only have RU/UZ variants; fall back to RU for EN.
+  const labelLang: "ru" | "uz" = lang === "uz" ? "uz" : "ru";
+
   const fuelForUI =
-    FUEL_TYPES.find((f) => f.value === form.fuelType)?.label[lang] || "";
+    FUEL_TYPES.find((f) => f.value === form.fuelType)?.label[labelLang] || "";
   const qtyForUI =
-    QUANTITY_OPTIONS.find((q) => q.value === form.quantity)?.label[lang] || "";
+    QUANTITY_OPTIONS.find((q) => q.value === form.quantity)?.label[labelLang] || "";
   const timeForUI =
-    TIME_SLOTS.find((s) => s.value === form.deliveryTime)?.label[lang] || "";
+    TIME_SLOTS.find((s) => s.value === form.deliveryTime)?.label[labelLang] || "";
 
   const next = async () => {
     if (submitting) return;
@@ -709,7 +712,10 @@ export default function OrderPage() {
             <Select
               label={t.cityLabel}
               placeholder={t.cityPlaceholder}
-              options={CITIES.map((c) => ({ value: c.value, label: c.label[lang] }))}
+              options={CITIES.map((c) => ({
+                value: c.value,
+                label: c.label[labelLang as "ru" | "uz"],
+              }))}
               value={form.city}
               onChange={(e) => {
                 const v = e.target.value;
@@ -762,7 +768,10 @@ export default function OrderPage() {
             <Select
               label={t.fuelTypeLabel}
               placeholder={t.fuelTypePlaceholder}
-              options={FUEL_TYPES.map((f) => ({ value: f.value, label: f.label[lang] }))}
+              options={FUEL_TYPES.map((f) => ({
+                value: f.value,
+                label: f.label[labelLang as "ru" | "uz"],
+              }))}
               value={form.fuelType}
               onChange={(e) => {
                 const v = e.target.value;
@@ -772,7 +781,10 @@ export default function OrderPage() {
             <Select
               label={t.quantityLabel}
               placeholder={t.quantityPlaceholder}
-              options={QUANTITY_OPTIONS.map((q) => ({ value: q.value, label: q.label[lang] }))}
+              options={QUANTITY_OPTIONS.map((q) => ({
+                value: q.value,
+                label: q.label[labelLang as "ru" | "uz"],
+              }))}
               value={form.quantity}
               onChange={(e) => {
                 const v = e.target.value;
@@ -845,7 +857,10 @@ export default function OrderPage() {
             <Select
               label={t.preferredTime}
               placeholder={t.preferredTimePlaceholder}
-              options={TIME_SLOTS.map((s) => ({ value: s.value, label: s.label[lang] }))}
+              options={TIME_SLOTS.map((s) => ({
+                value: s.value,
+                label: s.label[labelLang as "ru" | "uz"],
+              }))}
               value={form.deliveryTime}
               onChange={(e) => {
                 const v = e.target.value;
@@ -891,7 +906,7 @@ export default function OrderPage() {
               <div>
                 <dt className="font-medium text-slate-500">{t.reviewLocation}</dt>
                 <dd className="text-slate-900">
-                  {(cityOption?.label[lang] || "—") +
+                  {(cityOption?.label[labelLang] || "—") +
                     (form.addressDetails ? `, ${form.addressDetails}` : "")}
                   {form.coordinates ? (
                     <span className="block text-slate-600 mt-1">
