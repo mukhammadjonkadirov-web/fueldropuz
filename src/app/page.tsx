@@ -71,23 +71,23 @@ export default function HomePage() {
           <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
             {[
               {
-                title: "No trip to the gas station",
-                description: "We come to you. Park anywhere — home, office, or roadside — and we’ll refuel your car.",
+                title: t("home.benefits.noTripTitle"),
+                description: t("home.benefits.noTripText"),
                 icon: "📍",
               },
               {
-                title: "Fast and simple",
-                description: "Order in a few taps. Choose fuel type, amount, and time. We handle the rest.",
+                title: t("home.benefits.fastTitle"),
+                description: t("home.benefits.fastText"),
                 icon: "⚡",
               },
               {
-                title: "Transparent pricing",
-                description: "See the price before you confirm. No hidden fees. Pay only for the fuel you get.",
+                title: t("home.benefits.pricingTitle"),
+                description: t("home.benefits.pricingText"),
                 icon: "💰",
               },
               {
-                title: "Safe and professional",
-                description: "Trained staff, safe handling, and insured service. Your car and safety come first.",
+                title: t("home.benefits.safeTitle"),
+                description: t("home.benefits.safeText"),
                 icon: "🛡️",
               },
             ].map((item) => (
@@ -131,7 +131,7 @@ export default function HomePage() {
           </div>
           <div className="mt-10 text-center">
             <Button as="link" href="/order" variant="primary" size="md">
-              Start your order
+              {t("home.startOrder")}
             </Button>
           </div>
         </div>
@@ -159,8 +159,11 @@ export default function HomePage() {
             ))}
           </div>
           <p className="mt-8 text-center">
-            <Link href="/about" className="font-medium text-sky-600 hover:text-sky-700 focus:outline-none focus:ring-2 focus:ring-sky-500 rounded">
-              Learn more about our service →
+            <Link
+              href="/about"
+              className="font-medium text-sky-600 hover:text-sky-700 focus:outline-none focus:ring-2 focus:ring-sky-500 rounded"
+            >
+              {t("home.learnMore")}
             </Link>
           </p>
         </div>
@@ -174,9 +177,21 @@ export default function HomePage() {
           </h2>
           <div className="mt-12 grid gap-8 sm:grid-cols-3">
             {[
-              { quote: "I ran out of fuel on the highway. FuelDrop came within 45 minutes. Simple and life-saving.", author: "Sarah M.", role: "Driver" },
-              { quote: "We switched from cash allowances to FuelDrop. Fuel misuse dropped and reporting is clear.", author: "James T.", role: "Fleet Manager" },
-              { quote: "Ordering is so easy. My parents use it too — no confusion, just fuel when you need it.", author: "Alex K.", role: "Driver" },
+              {
+                quote: t("home.testimonials.firstQuote"),
+                author: t("home.testimonials.firstAuthor"),
+                role: t("home.testimonials.firstRole"),
+              },
+              {
+                quote: t("home.testimonials.secondQuote"),
+                author: t("home.testimonials.secondAuthor"),
+                role: t("home.testimonials.secondRole"),
+              },
+              {
+                quote: t("home.testimonials.thirdQuote"),
+                author: t("home.testimonials.thirdAuthor"),
+                role: t("home.testimonials.thirdRole"),
+              },
             ].map((item) => (
               <blockquote key={item.author} className="rounded-2xl bg-white/10 p-6 backdrop-blur">
                 <p className="text-lg">&ldquo;{item.quote}&rdquo;</p>

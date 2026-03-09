@@ -63,6 +63,35 @@ const translationsEn = {
     ctaBody:
       "Order fuel now or get in touch to set up fuel budgets for your company.",
     startOrder: "Start your order",
+    learnMore: "Learn more about our service →",
+    benefits: {
+      noTripTitle: "No trip to the gas station",
+      noTripText:
+        "We come to you. Park anywhere — home, office, or roadside — and we’ll refuel your car.",
+      fastTitle: "Fast and simple",
+      fastText:
+        "Order in a few taps. Choose fuel type, amount, and time. We handle the rest.",
+      pricingTitle: "Transparent pricing",
+      pricingText:
+        "See the price before you confirm. No hidden fees. Pay only for the fuel you get.",
+      safeTitle: "Safe and professional",
+      safeText:
+        "Trained staff, safe handling, and insured service. Your car and safety come first.",
+    },
+    testimonials: {
+      firstQuote:
+        "I ran out of fuel on the highway. FuelDrop came within 45 minutes. Simple and life-saving.",
+      firstAuthor: "Sarah M.",
+      firstRole: "Driver",
+      secondQuote:
+        "We switched from cash allowances to FuelDrop. Fuel misuse dropped and reporting is clear.",
+      secondAuthor: "James T.",
+      secondRole: "Fleet Manager",
+      thirdQuote:
+        "Ordering is so easy. My parents use it too — no confusion, just fuel when you need it.",
+      thirdAuthor: "Alex K.",
+      thirdRole: "Driver",
+    },
   },
   contact: {
     heading: "Contact us",
@@ -210,6 +239,35 @@ const translationsRu: Translations = {
     ctaBody:
       "Оформите заказ на доставку топлива или настройте бюджеты для вашей компании.",
     startOrder: "Начать заказ",
+    learnMore: "Узнать больше о нашем сервисе →",
+    benefits: {
+      noTripTitle: "Без поездки на заправку",
+      noTripText:
+        "Мы приедем к вам. Паркуйтесь где удобно — дома, в офисе или на дороге — и мы заправим ваш автомобиль.",
+      fastTitle: "Быстро и просто",
+      fastText:
+        "Оформите заказ в несколько шагов. Выберите тип топлива, объём и время. Остальное мы возьмём на себя.",
+      pricingTitle: "Прозрачные цены",
+      pricingText:
+        "Вы видите итоговую стоимость до подтверждения. Никаких скрытых платежей.",
+      safeTitle: "Безопасно и профессионально",
+      safeText:
+        "Обученный персонал, безопасная работа с топливом и застрахованный сервис. Ваша безопасность — в приоритете.",
+    },
+    testimonials: {
+      firstQuote:
+        "У меня закончился бензин на трассе. FuelDrop приехал примерно за 45 минут. Просто и очень выручило.",
+      firstAuthor: "Сара М.",
+      firstRole: "Водитель",
+      secondQuote:
+        "Мы отказались от денежных компенсаций на топливо и перешли на FuelDrop. Злоупотреблений стало меньше, отчётность стала яснее.",
+      secondAuthor: "Джеймс Т.",
+      secondRole: "Менеджер автопарка",
+      thirdQuote:
+        "Заказывать топливо очень легко. Даже мои родители пользуются сервисом — без путаницы, просто топливо тогда, когда нужно.",
+      thirdAuthor: "Алекс К.",
+      thirdRole: "Водитель",
+    },
   },
   contact: {
     ...translationsEn.contact,
@@ -361,6 +419,35 @@ const translationsUz: Translations = {
     ctaBody:
       "Avtomobilingizga yoqilg‘i buyurtma qiling yoki kompaniyangiz uchun byudjetlarni sozlang.",
     startOrder: "Buyurtmani boshlash",
+    learnMore: "Servisimiz haqida batafsil →",
+    benefits: {
+      noTripTitle: "AYoQShga borish shart emas",
+      noTripText:
+        "Biz o‘zimiz sizning oldingizga kelamiz. Uy, ofis yoki yo‘lda bo‘ling — avtomobilingizni shu yerning o‘zida to‘ldiramiz.",
+      fastTitle: "Tez va qulay",
+      fastText:
+        "Bir necha bosqichda buyurtma bering. Yoqilg‘i turi, hajmi va vaqtni tanlang. Qolgan ishni biz bajaramiz.",
+      pricingTitle: "Shaffof narxlar",
+      pricingText:
+        "Tasdiqlashdan oldin yakuniy narxni ko‘rasiz. Yashirin to‘lovlar yo‘q.",
+      safeTitle: "Xavfsiz va professional",
+      safeText:
+        "Tajriba orttirgan mutaxassislar, xavfsiz yoqilg‘i quyish va sug‘urtalangan servis. Siz va avtomobilingiz xavfsizligi ustuvor.",
+    },
+    testimonials: {
+      firstQuote:
+        "Yo‘lda yoqilg‘im tugab qoldi. FuelDrop taxminan 45 daqiqada yetib keldi. Juda qulay va haqiqiy najot bo‘ldi.",
+      firstAuthor: "Sara M.",
+      firstRole: "Haydovchi",
+      secondQuote:
+        "Naqd pul o‘rniga yoqilg‘i uchun FuelDrop’dan foydalanishni boshladik. Mablag‘lardan noto‘g‘ri foydalanish kamaydi, hisobotlar aniq bo‘ldi.",
+      secondAuthor: "Jeyms T.",
+      secondRole: "Avtopark menejeri",
+      thirdQuote:
+        "Buyurtma berish juda oson. Hattoki ota-onam ham foydalanadi — chalkashliksiz, kerak paytda yoqilg‘i.",
+      thirdAuthor: "Aleks K.",
+      thirdRole: "Haydovchi",
+    },
   },
   contact: {
     ...translationsEn.contact,
