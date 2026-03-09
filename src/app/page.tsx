@@ -4,9 +4,11 @@ import Link from "next/link";
 import { Button } from "@/components/ui/Button";
 import { Card, CardTitle, CardDescription } from "@/components/ui/Card";
 import { useI18n } from "@/lib/i18n";
+import { useLanguage } from "@/i18n/useLanguage";
 
 export default function HomePage() {
   const { t } = useI18n();
+  const { t: copy } = useLanguage();
 
   return (
     <>
@@ -106,14 +108,14 @@ export default function HomePage() {
             {t("home.howTitle")}
           </h2>
           <p className="mx-auto mt-3 max-w-2xl text-center text-slate-600">
-            {t("home.howBody")}
+            {copy.stepsTitle}
           </p>
           <div className="mt-12 grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
             {[
-              { step: 1, title: "Enter your location", text: "Tell us where your car is. We’ll confirm we can reach you." },
-              { step: 2, title: "Choose fuel & amount", text: "Select fuel type and how much you need. See the price instantly." },
-              { step: 3, title: "Confirm & pay", text: "Add vehicle and contact details. Pay securely when we arrive." },
-              { step: 4, title: "We deliver", text: "Our technician arrives at your chosen time and refuels your car." },
+              { step: 1, title: copy.step1Title, text: copy.step1Text },
+              { step: 2, title: copy.step2Title, text: copy.step2Text },
+              { step: 3, title: copy.step3Title, text: copy.step3Text },
+              { step: 4, title: copy.step4Title, text: copy.step4Text },
             ].map((item) => (
               <div key={item.step} className="relative">
                 <div className="flex h-12 w-12 items-center justify-center rounded-full bg-sky-600 text-lg font-bold text-white">
@@ -139,16 +141,16 @@ export default function HomePage() {
       <section className="px-4 py-16 sm:py-20">
         <div className="mx-auto max-w-7xl">
           <h2 className="text-center text-3xl font-bold text-slate-900 sm:text-4xl">
-            {t("home.trustTitle")}
+            {copy.reliabilityTitle}
           </h2>
           <p className="mx-auto mt-3 max-w-2xl text-center text-slate-600">
             {t("home.trustBody")}
           </p>
           <div className="mt-12 grid gap-6 sm:grid-cols-3">
             {[
-              { title: "Trained technicians", text: "Every delivery is done by certified, background-checked staff." },
-              { title: "Transparent pricing", text: "You see the total before we start. No surprises." },
-              { title: "Reliable support", text: "Need help? Our support team is here when you need us." },
+              { title: copy.technicians, text: copy.techniciansText },
+              { title: copy.pricing, text: copy.pricingText },
+              { title: copy.support, text: copy.supportText },
             ].map((item) => (
               <Card key={item.title} padding="lg">
                 <CardTitle>{item.title}</CardTitle>
