@@ -1,0 +1,23 @@
+@import "leaflet/dist/leaflet.css";
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --color-brand: 14 165 233;
+  --color-brand-dark: 2 132 199;
+  --color-surface: 248 250 252;
+  --color-ink: 15 23 42;
+}
+
+body {
+  @apply bg-slate-50 text-slate-900 antialiased;
+  font-feature-settings: "rlig" 1, "calt" 1;
+}
+
+@layer components {
+  .focus-ring {
+    @apply focus:outline-none focus:ring-2 focus:ring-sky-500 focus:ring-offset-2;
+  }
+}
