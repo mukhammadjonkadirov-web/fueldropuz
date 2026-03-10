@@ -1,14 +1,20 @@
 /**
- * Telegram Bot webhook — command handlers for /start, /order, /contact, /help.
+ * Telegram Bot webhook — command handlers and Reply Keyboard.
  *
- * Register this URL with Telegram so the bot receives updates:
- *   POST https://api.telegram.org/bot<TOKEN>/setWebhook
- *   body: { "url": "https://your-domain.com/api/telegram-webhook" }
+ * Commands work only after the webhook is registered. Open in a browser once:
+ *   https://your-domain.com/api/telegram-webhook?action=set
+ * (On Vercel, base URL is detected automatically.)
  *
  * Uses the same TELEGRAM_BOT_TOKEN as order notifications (/api/order).
  */
 import { NextResponse } from "next/server";
-import { getBotToken, sendTelegramMessage, type SendMessageParams } from "@/lib/telegram";
+import {
+  getBotToken,
+  getWebhookBaseUrl,
+  sendTelegramMessage,
+  setTelegramWebhook,
+  type SendMessageParams,
+} from "@/lib/telegram";
 
 const MINI_APP_URL = "https://fueldropuz.vercel.app";
 const ORDER_URL = `${MINI_APP_URL}/order`;
@@ -110,6 +116,34 @@ Phone: +998 77 041 4666`,
 `.trim(),
 };
 
+/** GET ?action=set — register webhook with Telegram (call once after deploy) */
+export async function GET(request: Request) {
+  const token = getBotToken();
+  if (!token) {
+    return NextResponse.json({ ok: false, error: "TELEGRAM_BOT_TOKEN not set" }, { status: 503 });
+  }
+  const { searchParams } = new URL(request.url);
+  if (searchParams.get("action") !== "set") {
+    return NextResponse.json({
+      ok: true,
+      hint: "To register webhook, open: /api/telegram-webhook?action=set",
+    });
+  }
+  const base = getWebhookBaseUrl(request.url);
+  if (!base) {
+    return NextResponse.json({
+      ok: false,
+      error: "Could not detect base URL. Set TELEGRAM_WEBHOOK_URL or deploy on Vercel.",
+    }, { status: 400 });
+  }
+  const webhookUrl = `${base}/api/telegram-webhook`;
+  const result = await setTelegramWebhook(token, webhookUrl);
+  if (!result.ok) {
+    return NextResponse.json({ ok: false, error: result.description }, { status: 502 });
+  }
+  return NextResponse.json({ ok: true, webhook: webhookUrl });
+}
+
 export async function POST(request: Request) {
   try {
     const token = getBotToken();
@@ -177,7 +211,16 @@ export async function POST(request: Request) {
       ...(replyMarkup && { reply_markup: replyMarkup }),
     };
 
-    await sendTelegramMessage(token, sendParams);
+    const apiResult = await sendTelegramMessage(token, sendParams);
+    if (!apiResult.ok) {
+      console.error("Telegram sendMessage failed:", apiResult.description);
+      const fallback: SendMessageParams = {
+        chat_id: chatId,
+        text: replyText,
+        ...(replyMarkup && { reply_markup: replyMarkup }),
+      };
+      await sendTelegramMessage(token, fallback);
+    }
     return NextResponse.json({ ok: true });
   } catch (err) {
     console.error("Telegram webhook error:", err);

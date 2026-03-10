@@ -44,3 +44,32 @@ export async function sendTelegramMessage(
   });
   return res.json();
 }
+
+/** Get the public base URL for webhook (e.g. https://fueldropuz.vercel.app) */
+export function getWebhookBaseUrl(requestUrl?: string | null): string | null {
+  if (typeof process.env.TELEGRAM_WEBHOOK_URL === "string" && process.env.TELEGRAM_WEBHOOK_URL) {
+    return process.env.TELEGRAM_WEBHOOK_URL.replace(/\/$/, "");
+  }
+  if (typeof process.env.VERCEL_URL === "string" && process.env.VERCEL_URL) {
+    return `https://${process.env.VERCEL_URL}`;
+  }
+  if (requestUrl) {
+    try {
+      const u = new URL(requestUrl);
+      return `${u.protocol}//${u.host}`;
+    } catch {
+      // ignore
+    }
+  }
+  return null;
+}
+
+export async function setTelegramWebhook(token: string, webhookUrl: string): Promise<{ ok: boolean; description?: string }> {
+  const res = await fetch(`${TELEGRAM_API}${token}/setWebhook`, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ url: webhookUrl }),
+  });
+  const data = (await res.json()) as { ok?: boolean; description?: string };
+  return { ok: !!data.ok, description: data.description };
+}
